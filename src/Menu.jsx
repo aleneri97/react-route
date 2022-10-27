@@ -23,7 +23,7 @@ export const Menu = () => {
 		<nav>
 			<ul>
 				{routes.map(route => (
-					<li>
+					<li key={route.path}>
 						<NavLink
 							style={({isActive}) => linkActiveStyle(isActive)}
 							to={route.path}

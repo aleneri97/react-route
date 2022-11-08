@@ -17,6 +17,14 @@ export const Menu = () => {
       path: '/profile',
       text: 'Profile'
     },
+    {
+      path: '/login',
+      text: 'Login'
+    },
+    {
+      path: '/logout',
+      text: 'Logout'
+    },
   ];
   
 	return (

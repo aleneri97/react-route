@@ -6,7 +6,7 @@ import {LoginPage} from './LoginPage';
 import {LogoutPage} from './LogoutPage';
 import {Menu} from './Menu';
 import {ProfilePage} from './ProfilePage';
-import {AuthProvider} from './auth';
+import {AuthProvider, AuthRoute} from './auth';
 
 function App() {
 	return (
@@ -19,9 +19,30 @@ function App() {
 						<Route path='/blog' element={<BlogPage />}>
 							<Route path=':slug' element={<BlogPost />} />
 						</Route>
-						<Route path='/login' element={<LoginPage />} />
-						<Route path='/logout' element={<LogoutPage />} />
-						<Route path='/profile' element={<ProfilePage />} />
+						<Route
+							path='/login'
+							element={
+								<AuthRoute type='public'>
+									<LoginPage />
+								</AuthRoute>
+							}
+						/>
+						<Route
+							path='/logout'
+							element={
+								<AuthRoute type='private'>
+									<LogoutPage />
+								</AuthRoute>
+							}
+						/>
+						<Route
+							path='/profile'
+							element={
+								<AuthRoute type='private'>
+									<ProfilePage />
+								</AuthRoute>
+							}
+						/>
 						<Route path='*' element={<p>Not Found</p>} />
 					</Routes>
 				</AuthProvider>

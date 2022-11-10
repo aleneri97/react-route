@@ -1,13 +1,15 @@
 import React, {createContext, useState, useContext} from 'react';
 import { useNavigate, Navigate } from 'react-router-dom';
 
+const usrList = [{username: 'Irisval', role: 100}, {username: 'RetaMaster', role: 200}, {username: 'freddier', role: 300}];
+
 const AuthContext = createContext();
 
 function AuthProvider({children}) {
     const navigate = useNavigate();
 	const [user, setUser] = useState(undefined);
     const login = ({username}) => {
-        setUser({ username });
+        setUser({ username, role: usrList.find(usr => usr.username === username)?.role || -1});
         navigate('/profile');
     };
     const logout = () => {
